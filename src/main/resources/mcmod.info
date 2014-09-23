@@ -1,0 +1,16 @@
+[
+{
+  "modid": "chunkgen",
+  "name": "ChunkGen",
+  "description": "Adds a command to pre-generate chunks",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["gecgooden"],
+  "credits": "gecgooden",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

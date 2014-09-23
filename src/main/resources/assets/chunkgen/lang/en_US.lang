@@ -1,0 +1,4 @@
+#Command Response
+commands.successful=Chunk Generation Completed!
+commands.failed=Chunk Generation Failed!
+commands.numberFormatException=One of the passed arguments wasn't a number!

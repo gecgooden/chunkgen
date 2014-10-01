@@ -2,6 +2,8 @@ package com.gecgooden.chunkgen;
 
 import java.util.Map;
 
+import com.gecgooden.chunkgen.commands.ChunkGenCommand;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;

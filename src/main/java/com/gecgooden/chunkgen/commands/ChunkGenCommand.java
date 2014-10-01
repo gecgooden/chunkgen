@@ -1,7 +1,9 @@
-package com.gecgooden.chunkgen;
+package com.gecgooden.chunkgen.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.gecgooden.chunkgen.util.Utilities;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
@@ -89,22 +91,9 @@ public class ChunkGenCommand implements ICommand
 				}
 
 				System.out.println(x + " " + z + " " + height + " " + width + " " + dimensionID);
-
-				ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
-				List<Chunk> chunks = new ArrayList<Chunk>(width*height);
-				for(int i = (x - width/2); i < (x + width/2); i++) {
-					for(int j = (z - height/2); j < (z + height/2); j++) {
-						System.out.println("About to generate chunk at " + i + " " + j);
-						if(!cps.chunkExists(i, j)) {
-							chunks.add(cps.loadChunk(i, j)); 
-							cps.saveChunks(true, null);
-						}
-						System.out.println("Loaded Chunk at " + i + " " + j);
-					}
-				}
-				for(Chunk c : chunks) {
-					cps.unloadChunksIfNotNearSpawn(c.xPosition, c.zPosition);
-				}
+				
+				Utilities.generateChunks(x, z, width, height, dimensionID);
+				
 				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.successful");
 				MinecraftServer.getServer().addChatMessage(chatTranslation);
 				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));

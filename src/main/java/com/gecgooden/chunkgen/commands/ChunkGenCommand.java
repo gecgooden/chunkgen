@@ -55,7 +55,7 @@ public class ChunkGenCommand implements ICommand
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
-		if(!icommandsender.canCommandSenderUseCommand(getRequiredPermissionLevel(), this.getCommandName())) {
+		if(!icommandsender.canCommandSenderUseCommand(getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.getServer().isSinglePlayer()) {
 			ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.generic.permission", new Object[0]);
 			MinecraftServer.getServer().addChatMessage(chatTranslation);
 			icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));

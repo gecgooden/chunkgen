@@ -9,7 +9,7 @@ import net.minecraft.world.gen.ChunkProviderServer;
 
 public class Utilities {
 
-	public static void generateChunks(int x, int z, int width, int height, int dimensionID) throws Exception {
+	public static void generateChunks(int x, int z, int width, int height, int dimensionID) {
 		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
 
 		List<Chunk> chunks = new ArrayList<Chunk>(width*height);

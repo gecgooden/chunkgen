@@ -3,6 +3,8 @@ package com.gecgooden.chunkgen.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gecgooden.chunkgen.reference.Reference;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
@@ -22,7 +24,7 @@ public class Utilities {
 					chunks.add(cps.loadChunk(i, j)); 
 					cps.saveChunks(true, null);
 				}
-				System.out.println("Loaded Chunk at " + i + " " + j + " " + dimensionID);
+				Reference.logger.info("Loaded Chunk at " + i + " " + j + " " + dimensionID);
 			}
 		}
 		for(Chunk c : chunks) {
@@ -35,7 +37,7 @@ public class Utilities {
 		if(!cps.chunkExists(x, z)) {
 			cps.loadChunk(x, z);
 			cps.unloadChunksIfNotNearSpawn(x, z);
-			System.out.println("Loaded Chunk at " + x + " " + z + " " + dimensionID);
+			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
 		}
 	}
 }

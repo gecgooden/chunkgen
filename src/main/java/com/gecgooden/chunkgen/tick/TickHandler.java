@@ -8,8 +8,8 @@ import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.ChunkPosition;
 import com.gecgooden.chunkgen.util.Utilities;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickHandler {
 

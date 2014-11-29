@@ -13,9 +13,9 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkProviderServer;
@@ -66,12 +66,11 @@ public class ChunkGenCommand implements ICommand
 			int playerX = 0;
 			int playerY = 0;
 			int playerZ = 0;
-			if(!icommandsender.getCommandSenderName().equalsIgnoreCase("Rcon")) {
-				EntityPlayer ep = MinecraftServer.getServer().worldServerForDimension(0).getPlayerEntityByName(icommandsender.getCommandSenderName());
-				ChunkCoordinates cc = icommandsender.getPlayerCoordinates();
-				playerX = cc.posX;
-				playerY = cc.posY;
-				playerZ = cc.posZ;
+			if(icommandsender.getCommandSenderEntity() != null) {
+				EntityPlayer ep = (EntityPlayer) icommandsender.getCommandSenderEntity();
+				playerX = ep.getPosition().getX();
+				playerY = ep.getPosition().getY();
+				playerZ = ep.getPosition().getZ();
 			}
 			if(astring[0].equalsIgnoreCase("stop")) {
 				Reference.toGenerate.clear();
@@ -129,13 +128,6 @@ public class ChunkGenCommand implements ICommand
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender,
-			String[] astring)
-	{
-		return null;
-	}
-
-	@Override
 	public boolean isUsernameIndex(String[] astring, int i)
 	{
 		return false;
@@ -145,5 +137,10 @@ public class ChunkGenCommand implements ICommand
 	public int compareTo(Object o)
 	{
 		return 0;
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+		return null;
 	}
 }

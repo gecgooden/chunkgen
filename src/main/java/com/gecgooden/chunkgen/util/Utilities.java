@@ -28,7 +28,7 @@ public class Utilities {
 			}
 		}
 		for(Chunk c : chunks) {
-			cps.unloadChunksIfNotNearSpawn(c.xPosition, c.zPosition);
+			cps.unloadAllChunks();
 		}
 	}
 
@@ -36,7 +36,7 @@ public class Utilities {
 		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
 		if(!cps.chunkExists(x, z)) {
 			cps.loadChunk(x, z);
-			cps.unloadChunksIfNotNearSpawn(x, z);
+			cps.unloadAllChunks();
 			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
 		}
 	}

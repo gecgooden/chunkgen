@@ -7,7 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 import com.gecgooden.chunkgen.handlers.ConfigurationHandler;
 import com.gecgooden.chunkgen.reference.Reference;
 
-import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class ModGuiConfig extends GuiConfig {
 

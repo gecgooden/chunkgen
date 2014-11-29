@@ -17,12 +17,12 @@
 
 apply plugin: 'forge'
 
-version = "1.7.10-1.2"
+version = "1.8-1.2-pre1"
 group= "com.gecgooden.chunkgen" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "chunkgen"
 
 minecraft {
-    version = "1.7.10-10.13.0.1180"
+    version = "1.8-11.14.0.1245-1.8"
     assetDir = "eclipse/assets"
 }
 

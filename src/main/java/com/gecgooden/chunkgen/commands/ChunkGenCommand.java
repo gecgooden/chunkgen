@@ -73,7 +73,12 @@ public class ChunkGenCommand implements ICommand
 				playerY = cc.posY;
 				playerZ = cc.posZ;
 			}
-			if(astring[0].equalsIgnoreCase("stop")) {
+			if(astring.length == 0 || astring[0].equalsIgnoreCase("help")) {
+				ChatComponentTranslation chatTranslation = new ChatComponentTranslation(getCommandUsage(icommandsender), new Object[0]);
+				MinecraftServer.getServer().addChatMessage(chatTranslation);
+				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
+			}
+			else if(astring[0].equalsIgnoreCase("stop")) {
 				Reference.toGenerate.clear();
 				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.stopped");
 				MinecraftServer.getServer().addChatMessage(chatTranslation);

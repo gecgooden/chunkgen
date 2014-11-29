@@ -1,8 +1,11 @@
 package com.gecgooden.chunkgen.commands;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import com.gecgooden.chunkgen.reference.Reference;
+import com.gecgooden.chunkgen.util.ChunkPosition;
 import com.gecgooden.chunkgen.util.Utilities;
 
 import net.minecraft.client.Minecraft;
@@ -70,45 +73,52 @@ public class ChunkGenCommand implements ICommand
 				playerY = cc.posY;
 				playerZ = cc.posZ;
 			}
-			try {
-				int x = 0;
-				int z = 0;
-				if(astring[0].equalsIgnoreCase("~")) {
-					x = playerX/16;
-				} else {
-					x = Integer.parseInt(astring[0]);
-				}
-				if(astring[1].equalsIgnoreCase("~")) {
-					z = playerZ/16;
-				} else {
-					z = Integer.parseInt(astring[1]);
-				}
-				int height = Integer.parseInt(astring[2]);
-				int width = Integer.parseInt(astring[3]);
-				int dimensionID = 0;
-				if(astring.length == 5) {
-					dimensionID = Integer.parseInt(astring[4]);
-				}
+			if(astring[0].equalsIgnoreCase("stop")) {
+				Reference.toGenerate.clear();
+				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.stopped");
+				MinecraftServer.getServer().addChatMessage(chatTranslation);
+				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
+			} else {
+				try {
+					int x = 0;
+					int z = 0;
+					if(astring[0].equalsIgnoreCase("~")) {
+						x = playerX/16;
+					} else {
+						x = Integer.parseInt(astring[0]);
+					}
+					if(astring[1].equalsIgnoreCase("~")) {
+						z = playerZ/16;
+					} else {
+						z = Integer.parseInt(astring[1]);
+					}
+					int height = Integer.parseInt(astring[2]);
+					int width = Integer.parseInt(astring[3]);
+					int dimensionID = 0;
+					if(astring.length == 5) {
+						dimensionID = Integer.parseInt(astring[4]);
+					}
 
-				System.out.println(x + " " + z + " " + height + " " + width + " " + dimensionID);
-				
-				Utilities.generateChunks(x, z, width, height, dimensionID);
-				
-				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.successful");
-				MinecraftServer.getServer().addChatMessage(chatTranslation);
-				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.numberFormatException");
-				MinecraftServer.getServer().addChatMessage(chatTranslation);
-				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
-			} catch (Exception e) {
-				e.printStackTrace();
-				ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.failed");
-				MinecraftServer.getServer().addChatMessage(chatTranslation);
-				icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
+					for(int i = (x - width/2); i < (x + width/2); i++) {
+						for(int j = (z - height/2); j < (z + height/2); j++) {
+							if(Reference.toGenerate == null) {
+								Reference.toGenerate = new LinkedList<ChunkPosition>();
+							}
+							Reference.toGenerate.add(new ChunkPosition(i, j, dimensionID, icommandsender));
+						}
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+					ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.numberFormatException");
+					MinecraftServer.getServer().addChatMessage(chatTranslation);
+					icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
+				} catch (Exception e) {
+					e.printStackTrace();
+					ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.failed");
+					MinecraftServer.getServer().addChatMessage(chatTranslation);
+					icommandsender.addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
+				}
 			}
-			
 		}
 	}
 

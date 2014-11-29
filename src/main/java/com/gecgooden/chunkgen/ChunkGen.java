@@ -5,6 +5,7 @@ import java.util.Map;
 import com.gecgooden.chunkgen.commands.ChunkGenCommand;
 import com.gecgooden.chunkgen.handlers.ConfigurationHandler;
 import com.gecgooden.chunkgen.reference.Reference;
+import com.gecgooden.chunkgen.tick.TickHandler;
 import com.gecgooden.chunkgen.util.Utilities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -33,6 +34,7 @@ public class ChunkGen
     public void preInit(FMLPreInitializationEvent event) {
     	ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+		FMLCommonHandler.instance().bus().register(new TickHandler());
     }
     
     @EventHandler

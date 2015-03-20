@@ -27,9 +27,7 @@ public class Utilities {
 				Reference.logger.info("Loaded Chunk at " + i + " " + j + " " + dimensionID);
 			}
 		}
-		for(Chunk c : chunks) {
-			cps.unloadAllChunks();
-		}
+		cps.unloadAllChunks();
 	}
 
 	public static void generateChunk(int x, int z, int dimensionID) {

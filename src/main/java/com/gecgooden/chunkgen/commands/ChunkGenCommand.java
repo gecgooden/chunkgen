@@ -112,6 +112,7 @@ public class ChunkGenCommand implements ICommand
 							Reference.toGenerate.add(new ChunkPosition(i, j, dimensionID, icommandsender));
 						}
 					}
+					Reference.startingSize = Reference.toGenerate.size();
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.numberFormatException");

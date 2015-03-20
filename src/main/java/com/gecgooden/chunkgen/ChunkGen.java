@@ -1,5 +1,6 @@
 package com.gecgooden.chunkgen;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +38,9 @@ public class ChunkGen
 	public void preInit(FMLPreInitializationEvent event) {
 		Reference.logger = LogManager.getLogger(Reference.MOD_ID);
 
+		Reference.decimalFormat = new DecimalFormat();
+		Reference.decimalFormat.setMaximumFractionDigits(2);
+		
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 		FMLCommonHandler.instance().bus().register(new TickHandler());

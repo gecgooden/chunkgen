@@ -33,8 +33,20 @@ public class Utilities {
 	public static void generateChunk(int x, int z, int dimensionID) {
 		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
 		if(!cps.chunkExists(x, z)) {
+			cps.loadChunk(x, z+1);
+			cps.loadChunk(x, z-1);
+			cps.loadChunk(x+1, z);
+			cps.loadChunk(x-1, z);
+			
 			cps.loadChunk(x, z);
-			cps.unloadAllChunks();
+
+//			cps.unloadChunksIfNotNearSpawn(x, z);
+//			
+//			cps.unloadChunksIfNotNearSpawn(x, z+1);
+//			cps.unloadChunksIfNotNearSpawn(x, z-1);
+//			cps.unloadChunksIfNotNearSpawn(x+1, z);
+//			cps.unloadChunksIfNotNearSpawn(x-1, z);
+			
 			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
 		}
 	}

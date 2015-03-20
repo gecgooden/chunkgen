@@ -1,4 +1,4 @@
-package com.gecgooden.chunkgen.tick;
+package com.gecgooden.chunkgen.handlers;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;

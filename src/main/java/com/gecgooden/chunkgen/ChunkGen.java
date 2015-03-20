@@ -6,8 +6,8 @@ import org.apache.logging.log4j.LogManager;
 
 import com.gecgooden.chunkgen.commands.ChunkGenCommand;
 import com.gecgooden.chunkgen.handlers.ConfigurationHandler;
+import com.gecgooden.chunkgen.handlers.TickHandler;
 import com.gecgooden.chunkgen.reference.Reference;
-import com.gecgooden.chunkgen.tick.TickHandler;
 import com.gecgooden.chunkgen.util.Utilities;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;

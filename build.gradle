@@ -17,7 +17,7 @@
 
 apply plugin: 'forge'
 
-version = "1.7.10-1.2"
+version = "1.7.10-1.2.1"
 group= "com.gecgooden.chunkgen" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "chunkgen"
 

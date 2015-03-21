@@ -24,7 +24,7 @@ public class TickHandler {
 			for(int i = 0; i < Reference.numChunksPerTick; i++) {
 				ChunkPosition cp = Reference.toGenerate.poll();
 				if(cp != null) {
-					Utilities.generateChunk(cp.getX(), cp.getZ(), cp.getDimensionID());
+					Utilities.generateChunk(null, cp.getX(), cp.getZ(), cp.getDimensionID());
 					float completedPercentage = 1 - (float)Reference.toGenerate.size()/(float)Reference.startingSize;
 					if(tickCounter == Reference.tickDelay) {
 						Reference.logger.info("percentage: " + completedPercentage);

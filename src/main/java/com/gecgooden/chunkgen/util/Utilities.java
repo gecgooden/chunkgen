@@ -20,11 +20,7 @@ public class Utilities {
 		List<Chunk> chunks = new ArrayList<Chunk>(width*height);
 		for(int i = (x - width/2); i < (x + width/2); i++) {
 			for(int j = (z - height/2); j < (z + height/2); j++) {
-				if(!cps.chunkExists(i, j)) {
-					chunks.add(cps.loadChunk(i, j)); 
-					cps.saveChunks(true, null);
-				}
-				Reference.logger.info("Loaded Chunk at " + i + " " + j + " " + dimensionID);
+				generateChunk(null, i, j, dimensionID);
 			}
 		}
 		for(Chunk c : chunks) {
@@ -32,15 +28,21 @@ public class Utilities {
 		}
 	}
 
-	public static void generateChunk(int x, int z, int dimensionID) {
-		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
-		if(!cps.chunkExists(x, z)) {
-			cps.loadChunk(x, z+1);
-			cps.loadChunk(x, z-1);
-			cps.loadChunk(x+1, z);
-			cps.loadChunk(x-1, z);
-			
+	private static boolean chunksExist(ChunkProviderServer cps, int x, int z) {
+		return cps.chunkExists(x, z) && cps.chunkExists(x, z+1) && cps.chunkExists(x+1, z) && cps.chunkExists(x+1, z+1);
+	}
+	
+	public static void generateChunk(ChunkProviderServer cps, int x, int z, int dimensionID) {
+		if(cps == null) {
+			cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
+		}
+		if(!chunksExist(cps, x, z)) {
 			cps.loadChunk(x, z);
+
+			cps.loadChunk(x, z+1);
+			cps.loadChunk(x+1, z);
+			cps.loadChunk(x+1, z+1);
+			
 //			cps.unloadChunksIfNotNearSpawn(x, z);
 //			
 //			cps.unloadChunksIfNotNearSpawn(x, z+1);

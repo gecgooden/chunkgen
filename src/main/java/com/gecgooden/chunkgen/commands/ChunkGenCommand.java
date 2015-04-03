@@ -99,7 +99,7 @@ public class ChunkGenCommand implements ICommand
 					}
 					int height = Integer.parseInt(astring[2]);
 					int width = Integer.parseInt(astring[3]);
-					int dimensionID = 0;
+					int dimensionID = icommandsender.getEntityWorld().provider.dimensionId;
 					if(astring.length == 5) {
 						dimensionID = Integer.parseInt(astring[4]);
 					}

@@ -10,6 +10,13 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkProviderServer;
+import net.minecraft.world.chunk.storage.RegionFileCache;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+
+
+
 
 public class Utilities {
 
@@ -28,15 +35,21 @@ public class Utilities {
 		}
 	}
 
-	private static boolean chunksExist(ChunkProviderServer cps, int x, int z) {
-		return cps.chunkExists(x, z) && cps.chunkExists(x, z+1) && cps.chunkExists(x+1, z) && cps.chunkExists(x+1, z+1);
+	private static boolean chunksExist(ChunkProviderServer cps, int x, int z, int dimensionID) {
+		WorldServer world = null;
+	
+		world = DimensionManager.getWorld(dimensionID);
+		
+		return RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
+
+		
 	}
 	
 	public static void generateChunk(ChunkProviderServer cps, int x, int z, int dimensionID) {
 		if(cps == null) {
 			cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
 		}
-		if(!chunksExist(cps, x, z)) {
+		if(!chunksExist(cps, x, z, dimensionID)) {
 			cps.loadChunk(x, z);
 
 			cps.loadChunk(x, z+1);

@@ -22,7 +22,7 @@ group= "com.gecgooden.chunkgen" // http://maven.apache.org/guides/mini/guide-nam
 archivesBaseName = "chunkgen"
 
 minecraft {
-    version = "1.7.10-10.13.0.1180"
+    version = "1.7.10-10.13.4.1448-1.7.10"
     assetDir = "eclipse/assets"
 }
 

@@ -12,7 +12,6 @@ import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.Utilities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -51,7 +50,7 @@ public class ChunkGen
 	{
 		event.registerServerCommand(new ChunkGenCommand());
 		if(Reference.x != null && Reference.z != null && Reference.height != null && Reference.width != null && Reference.height > 0 && Reference.width > 0) {
-			Utilities.generateChunks(Reference.x, Reference.z, Reference.width, Reference.height, 0);
+			Utilities.queueChunkGeneration(event.getServer(), Reference.x, Reference.z, Reference.height, Reference.width, 0);
 		}
 	}
 }

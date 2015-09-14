@@ -1,21 +1,17 @@
 package com.gecgooden.chunkgen.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.gecgooden.chunkgen.reference.Reference;
-
+import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.ChunkProviderServer;
-import net.minecraft.world.chunk.storage.RegionFileCache;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.storage.RegionFileCache;
+import net.minecraft.world.gen.ChunkProviderServer;
+import net.minecraftforge.common.DimensionManager;
 
-
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Utilities {
@@ -55,6 +51,30 @@ public class Utilities {
 			cps.loadChunk(x+1, z+1);
 			
 			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
+		}
+	}
+
+	public static void queueChunkGeneration(ICommandSender icommandsender, int x0, int z0, int height, int width, int dimensionID) {
+		int x = 0, z = 0, dx = 0, dy = -1;
+		int t = Math.max(height, width);
+		int maxI = t * t;
+
+		if (Reference.toGenerate == null) {
+			Reference.toGenerate = new LinkedList<ChunkPosition>();
+		}
+
+		for (int i = 0; i < maxI; i++) {
+			if ((-width / 2 <= x) && (x <= width / 2) && (-height / 2 <= z) && (z <= height / 2)) {
+				Reference.toGenerate.add(new ChunkPosition(x + x0, z + z0, dimensionID, icommandsender));
+			}
+
+			if ((x == z) || ((x < 0) && (x == -z)) || ((x > 0) && (x == 1 - z))) {
+				t = dx;
+				dx = -dy;
+				dy = t;
+			}
+			x += dx;
+			z += dy;
 		}
 	}
 }

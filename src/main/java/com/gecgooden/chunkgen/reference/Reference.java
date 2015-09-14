@@ -13,6 +13,7 @@ public class Reference {
     public static Integer height;
     public static Integer width;
     public static double numChunksPerTick;
+    public static boolean pauseForPlayers;
 
     public static final String MOD_ID = "chunkgen";
     public static final String VERSION = "1.7.10-1.2.2";

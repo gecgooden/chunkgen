@@ -10,14 +10,19 @@ import com.gecgooden.chunkgen.util.Utilities;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.world.World;
 
 public class TickHandler {
 
 	private double chunkQueue = 0;
 	private int chunksGenerated = 0;
-	
+
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
+		// Note that this only works on dedicated servers.
+		final World world = MinecraftServer.getServer().getEntityWorld();
+		if (Reference.pauseForPlayers && world.playerEntities.size() > 0) return;
+
 		if(Reference.toGenerate != null && !Reference.toGenerate.isEmpty()) {
 			chunkQueue += Reference.numChunksPerTick;
 			while (chunkQueue > 1) {
@@ -31,7 +36,7 @@ public class TickHandler {
 						Reference.logger.info("percentage: " + completedPercentage);
 						ChatComponentTranslation chatTranslation = new ChatComponentTranslation("");
 						MinecraftServer.getServer().addChatMessage(chatTranslation);
-						
+
 						cp.getICommandSender().addChatMessage(new ChatComponentText("Chunkgen: " + (int)(completedPercentage * 100) + "% completed"));
 					}
 					if(Reference.toGenerate.peek() == null) {

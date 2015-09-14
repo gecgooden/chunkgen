@@ -1,7 +1,5 @@
 package com.gecgooden.chunkgen.handlers;
 
-import java.text.DecimalFormat;
-
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
@@ -16,12 +14,15 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 public class TickHandler {
 
 	private int tickCounter = 0;
+	private double chunkQueue = 0;
 	
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
 		if(Reference.toGenerate != null && !Reference.toGenerate.isEmpty()) {
 			tickCounter++;
-			for(int i = 0; i < Reference.numChunksPerTick; i++) {
+			chunkQueue += Reference.numChunksPerTick;
+			while (chunkQueue > 1) {
+				chunkQueue--;
 				ChunkPosition cp = Reference.toGenerate.poll();
 				if(cp != null) {
 					Utilities.generateChunk(cp.getX(), cp.getZ(), cp.getDimensionID());

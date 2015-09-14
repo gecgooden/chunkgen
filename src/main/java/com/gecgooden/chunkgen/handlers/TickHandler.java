@@ -13,23 +13,22 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class TickHandler {
 
-	private int tickCounter = 0;
 	private double chunkQueue = 0;
+	private int chunksGenerated = 0;
 	
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
 		if(Reference.toGenerate != null && !Reference.toGenerate.isEmpty()) {
-			tickCounter++;
 			chunkQueue += Reference.numChunksPerTick;
 			while (chunkQueue > 1) {
 				chunkQueue--;
+				chunksGenerated++;
 				ChunkPosition cp = Reference.toGenerate.poll();
 				if(cp != null) {
 					Utilities.generateChunk(cp.getX(), cp.getZ(), cp.getDimensionID());
 					float completedPercentage = 1 - (float)Reference.toGenerate.size()/(float)Reference.startingSize;
-					if(tickCounter == Reference.tickDelay) {
+					if(chunksGenerated % Reference.updateDelay == 0) {
 						Reference.logger.info("percentage: " + completedPercentage);
-						tickCounter = 0;
 						ChatComponentTranslation chatTranslation = new ChatComponentTranslation("");
 						MinecraftServer.getServer().addChatMessage(chatTranslation);
 						

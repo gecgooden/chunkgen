@@ -33,7 +33,7 @@ public class ConfigurationHandler {
 		Reference.height = configuration.get(Configuration.CATEGORY_GENERAL, "height", 0, "Height starting value").getInt();
 		Reference.width = configuration.get(Configuration.CATEGORY_GENERAL, "width", 0, "Width starting value").getInt();
 		Reference.numChunksPerTick = configuration.get(Configuration.CATEGORY_GENERAL, "numChunksPerTick", 1.0, "Number of chunks loaded per tick").getDouble();
-		Reference.tickDelay = configuration.get(Configuration.CATEGORY_GENERAL, "tickDelay", 40, "Number of ticks inbetween percentage updates").getInt();
+		Reference.updateDelay = configuration.get(Configuration.CATEGORY_GENERAL, "updateDelay", 40, "Number of chunks inbetween percentage updates").getInt();
 		
 		if(configuration.hasChanged()) {
 			configuration.save();

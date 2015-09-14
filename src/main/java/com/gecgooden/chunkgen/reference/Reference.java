@@ -20,7 +20,7 @@ public class Reference {
 
     public static Queue<ChunkPosition> toGenerate;
     public static int startingSize;
-    public static int tickDelay;
+    public static int updateDelay;
 
     public static DecimalFormat decimalFormat;
 

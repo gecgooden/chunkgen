@@ -1,14 +1,11 @@
 package com.gecgooden.chunkgen.commands;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.gecgooden.chunkgen.reference.Reference;
-import com.gecgooden.chunkgen.util.ChunkPosition;
 import com.gecgooden.chunkgen.util.Utilities;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,9 +13,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.ChunkProviderServer;
 
 public class ChunkGenCommand implements ICommand
 {	
@@ -104,14 +98,7 @@ public class ChunkGenCommand implements ICommand
 						dimensionID = Integer.parseInt(astring[4]);
 					}
 
-					for(int i = (x - width/2); i < (x + width/2); i++) {
-						for(int j = (z - height/2); j < (z + height/2); j++) {
-							if(Reference.toGenerate == null) {
-								Reference.toGenerate = new LinkedList<ChunkPosition>();
-							}
-							Reference.toGenerate.add(new ChunkPosition(i, j, dimensionID, icommandsender));
-						}
-					}
+					Utilities.queueChunkGeneration(icommandsender, x, z, height, width, dimensionID);
 					Reference.startingSize = Reference.toGenerate.size();
 				} catch (NumberFormatException e) {
 					e.printStackTrace();

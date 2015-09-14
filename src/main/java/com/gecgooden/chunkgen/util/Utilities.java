@@ -1,10 +1,12 @@
 package com.gecgooden.chunkgen.util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.gecgooden.chunkgen.reference.Reference;
 
+import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
@@ -56,5 +58,16 @@ public class Utilities {
 			
 			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
 		}
+	}
+
+	public static void queueChunkGeneration(ICommandSender icommandsender, int x, int z, int height, int width, int dimensionID) {
+		for(int i = (x - width/2); i < (x + width/2); i++) {
+            for(int j = (z - height/2); j < (z + height/2); j++) {
+                if(Reference.toGenerate == null) {
+                    Reference.toGenerate = new LinkedList<ChunkPosition>();
+                }
+                Reference.toGenerate.add(new ChunkPosition(i, j, dimensionID, icommandsender));
+            }
+        }
 	}
 }

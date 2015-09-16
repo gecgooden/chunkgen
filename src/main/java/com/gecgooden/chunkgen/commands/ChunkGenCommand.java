@@ -99,7 +99,6 @@ public class ChunkGenCommand implements ICommand
 					}
 
 					Utilities.queueChunkGeneration(icommandsender, x, z, height, width, dimensionID);
-					Reference.startingSize = Reference.toGenerate.size();
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.numberFormatException");

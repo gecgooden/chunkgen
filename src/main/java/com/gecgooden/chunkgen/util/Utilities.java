@@ -76,5 +76,7 @@ public class Utilities {
 			x += dx;
 			z += dy;
 		}
+
+		Reference.startingSize = Reference.toGenerate.size();
 	}
 }

@@ -31,13 +31,15 @@ public class TickHandler {
 				ChunkPosition cp = Reference.toGenerate.poll();
 				if(cp != null) {
 					Utilities.generateChunk(cp.getX(), cp.getZ(), cp.getDimensionID());
-					float completedPercentage = 1 - (float)Reference.toGenerate.size()/(float)Reference.startingSize;
 					if(chunksGenerated % Reference.updateDelay == 0) {
+						float completedPercentage = 1 - (float)Reference.toGenerate.size()/(float)Reference.startingSize;
 						Reference.logger.info("percentage: " + completedPercentage);
 						ChatComponentTranslation chatTranslation = new ChatComponentTranslation("");
 						MinecraftServer.getServer().addChatMessage(chatTranslation);
 
 						cp.getICommandSender().addChatMessage(new ChatComponentText("Chunkgen: " + (int)(completedPercentage * 100) + "% completed"));
+
+						ConfigurationHandler.UpdateSkipChunks();
 					}
 					if(Reference.toGenerate.peek() == null) {
 						ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.successful");
@@ -45,6 +47,7 @@ public class TickHandler {
 						cp.getICommandSender().addChatMessage(new ChatComponentText(chatTranslation.getUnformattedTextForChat()));
 					}
 				}
+				Reference.skipChunks++;
 			}
 		}
 	}

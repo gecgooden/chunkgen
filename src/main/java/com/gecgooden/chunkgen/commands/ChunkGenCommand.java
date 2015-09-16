@@ -98,7 +98,7 @@ public class ChunkGenCommand implements ICommand
 						dimensionID = Integer.parseInt(astring[4]);
 					}
 
-					Utilities.queueChunkGeneration(icommandsender, x, z, height, width, dimensionID);
+					Utilities.queueChunkGeneration(icommandsender, 0, x, z, height, width, dimensionID);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 					ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.numberFormatException");

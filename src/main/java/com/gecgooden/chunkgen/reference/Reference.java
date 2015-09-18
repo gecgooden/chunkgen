@@ -26,4 +26,5 @@ public class Reference {
     public static DecimalFormat decimalFormat;
 
     public static Logger logger;
+    public static int skipChunks;
 }

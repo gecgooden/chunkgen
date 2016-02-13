@@ -3,3 +3,5 @@ commands.successful=Chunk Generation Completed!
 commands.failed=Chunk Generation Failed!
 commands.numberFormatException=One of the passed arguments wasn't a number!
 commands.stopped=Chunk Generation Stopped
+commands.invalidDimension=No dimension found for ID: %d, cancelling chunk generation
+commands.errorGeneratingChunks=Error Generating Chunks: "%s"

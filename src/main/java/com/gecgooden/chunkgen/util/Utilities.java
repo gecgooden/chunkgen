@@ -17,7 +17,6 @@ import java.util.List;
 public class Utilities {
 
 	public static void generateChunks(int x, int z, int width, int height, int dimensionID) {
-
 		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
 
 		List<Chunk> chunks = new ArrayList<Chunk>(width*height);
@@ -32,9 +31,7 @@ public class Utilities {
 	}
 
 	private static boolean chunksExist(int x, int z, int dimensionID) {
-		WorldServer world = null;
-	
-		world = DimensionManager.getWorld(dimensionID);
+		WorldServer world = DimensionManager.getWorld(dimensionID);
 		
 		return RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
 
@@ -43,19 +40,19 @@ public class Utilities {
 	
 	public static void generateChunk(int x, int z, int dimensionID) {
 		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
-		if(!chunksExist(x, z, dimensionID)) {
+		if (!chunksExist(x, z, dimensionID)) {
 			cps.loadChunk(x, z);
 
-			cps.loadChunk(x, z+1);
-			cps.loadChunk(x+1, z);
-			cps.loadChunk(x+1, z+1);
-			
+			cps.loadChunk(x, z + 1);
+			cps.loadChunk(x + 1, z);
+			cps.loadChunk(x + 1, z + 1);
+
 			Reference.logger.info("Loaded Chunk at " + x + " " + z + " " + dimensionID);
 		}
 	}
 
 	public static void queueChunkGeneration(ICommandSender icommandsender, int skipChunks, int x0, int z0, int height, int width, int dimensionID) {
-		int x = 0, z = 0, dx = 0, dy = -1;
+		int x = 0, z = 0, dx = 0, dz = -1;
 		int t = Math.max(height, width);
 		int maxI = t * t;
 
@@ -74,11 +71,11 @@ public class Utilities {
 
 			if ((x == z) || ((x < 0) && (x == -z)) || ((x > 0) && (x == 1 - z))) {
 				t = dx;
-				dx = -dy;
-				dy = t;
+				dx = -dz;
+				dz = t;
 			}
 			x += dx;
-			z += dy;
+			z += dz;
 		}
 
 		Reference.startingSize = Reference.toGenerate.size();

@@ -7,12 +7,12 @@ Mod to pre-generate chunks. This is only required on the server.
 This mod adds the following command to Minecraft:
 
 ```
-/chunkgen <x> <y> <height> <width> [dimension]
+/chunkgen <x> <z> <height> <width> [dimension]
 ```
 
-where `x` and `y` are the origin chunk coordinates, height and width describe a rectangle centered at x,y of chunks to generate and dimension is the dimension ID to generate the chunks in.
+where `x` and `z` are the origin chunk coordinates, `height` and `width` describe a rectangle centered at x,z of chunks to generate and `dimension` is the dimension ID to generate the chunks in.
 
-All arguments should be whole numbers, however `x` and `y` may also be `~` which represents the players current position. 
+All arguments should be whole numbers, however `x` and `z` may each also be `~` which represents the players current position on that axis.
 
 `dimension` is an optional argument.
 

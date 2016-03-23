@@ -1,23 +1,21 @@
 package com.gecgooden.chunkgen;
 
-import java.text.DecimalFormat;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-
 import com.gecgooden.chunkgen.commands.ChunkGenCommand;
 import com.gecgooden.chunkgen.handlers.ConfigurationHandler;
 import com.gecgooden.chunkgen.handlers.TickHandler;
 import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.Utilities;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkCheckHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkCheckHandler;
-import cpw.mods.fml.relauncher.Side;
+import java.text.DecimalFormat;
+import java.util.Map;
 
 @Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory=Reference.GUI_FACTORY)
 public class ChunkGen
@@ -41,8 +39,8 @@ public class ChunkGen
 		Reference.decimalFormat.setMaximumFractionDigits(2);
 		
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
-		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
-		FMLCommonHandler.instance().bus().register(new TickHandler());
+		MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
+		MinecraftForge.EVENT_BUS.register(new TickHandler());
 	}
 
 	@EventHandler

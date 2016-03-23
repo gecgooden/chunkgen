@@ -1,11 +1,10 @@
 package com.gecgooden.chunkgen.reference;
 
-import java.text.DecimalFormat;
-import java.util.Queue;
-
+import com.gecgooden.chunkgen.util.ChunkPosition;
 import org.apache.logging.log4j.Logger;
 
-import com.gecgooden.chunkgen.util.ChunkPosition;
+import java.text.DecimalFormat;
+import java.util.Queue;
 
 public class Reference {
     public static Integer x;

@@ -27,7 +27,7 @@ public class Utilities {
 			}
 		}
 		for(Chunk c : chunks) {
-			cps.unloadChunksIfNotNearSpawn(c.xPosition, c.zPosition);
+			cps.unloadAllChunks(); //unloadChunksIfNotNearSpawn(c.xPosition, c.zPosition);
 		}
 	}
 
@@ -68,7 +68,9 @@ public class Utilities {
 				if (skipChunks > 0) {
 					skipChunks--;
 				} else {
+					System.out.println( (x+x0) + " " + (z+z0) + " " + dimensionID + " " + icommandsender.getName());
 					Reference.toGenerate.add(new ChunkPosition(x + x0, z + z0, dimensionID, icommandsender));
+					System.out.println(Reference.toGenerate.size());
 				}
 			}
 

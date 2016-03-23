@@ -1,16 +1,14 @@
 package com.gecgooden.chunkgen.handlers;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-
 import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.ChunkPosition;
 import com.gecgooden.chunkgen.util.Utilities;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TickHandler {
 
@@ -19,7 +17,7 @@ public class TickHandler {
 
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
-		// Note that this only works on dedicated servers.
+
 		final World world = MinecraftServer.getServer().getEntityWorld();
 		if (Reference.pauseForPlayers && world.playerEntities.size() > 0) return;
 

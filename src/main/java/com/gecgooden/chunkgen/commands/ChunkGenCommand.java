@@ -1,18 +1,18 @@
 package com.gecgooden.chunkgen.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.Utilities;
-
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
+
+import java.util.ArrayList;
+import java.util.List;
+//import net.minecraft.util.ChunkCoordinates;
 
 public class ChunkGenCommand implements ICommand
 {	
@@ -52,6 +52,9 @@ public class ChunkGenCommand implements ICommand
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
+		System.out.println("processCommand");
+		System.out.println(icommandsender.getName());
+
 		if(!icommandsender.canCommandSenderUseCommand(getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.getServer().isSinglePlayer()) {
 			ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.generic.permission", new Object[0]);
 			MinecraftServer.getServer().addChatMessage(chatTranslation);
@@ -60,12 +63,19 @@ public class ChunkGenCommand implements ICommand
 			int playerX = 0;
 			int playerY = 0;
 			int playerZ = 0;
-			if(!icommandsender.getCommandSenderName().equalsIgnoreCase("Rcon")) {
-				EntityPlayer ep = MinecraftServer.getServer().worldServerForDimension(0).getPlayerEntityByName(icommandsender.getCommandSenderName());
-				ChunkCoordinates cc = icommandsender.getPlayerCoordinates();
-				playerX = cc.posX;
-				playerY = cc.posY;
-				playerZ = cc.posZ;
+			if(!icommandsender.getName().equalsIgnoreCase("Rcon")) {
+				EntityPlayer ep = MinecraftServer.getServer().worldServerForDimension(0).getPlayerEntityByName(icommandsender.getName());
+				System.out.println(ep.getName());
+				BlockPos blockPos = icommandsender.getPosition();
+
+				System.out.println(blockPos.toString());
+
+				playerX = blockPos.getX();
+				playerY = blockPos.getY();
+				playerZ = blockPos.getZ();
+			}
+			for(String s : astring) {
+				System.out.println(s);
 			}
 			if(astring.length == 0 || astring[0].equalsIgnoreCase("help")) {
 				ChatComponentTranslation chatTranslation = new ChatComponentTranslation(getCommandUsage(icommandsender), new Object[0]);
@@ -93,7 +103,10 @@ public class ChunkGenCommand implements ICommand
 					}
 					int height = Integer.parseInt(astring[2]);
 					int width = Integer.parseInt(astring[3]);
-					int dimensionID = icommandsender.getEntityWorld().provider.dimensionId;
+					int dimensionID = icommandsender.getEntityWorld().provider.getDimensionId();
+
+					System.out.println(x + " " + z + " " + height + " " + width + " " + dimensionID);
+
 					if(astring.length == 5) {
 						dimensionID = Integer.parseInt(astring[4]);
 					}
@@ -121,9 +134,7 @@ public class ChunkGenCommand implements ICommand
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender,
-			String[] astring)
-	{
+	public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
 		return null;
 	}
 
@@ -134,8 +145,7 @@ public class ChunkGenCommand implements ICommand
 	}
 
 	@Override
-	public int compareTo(Object o)
-	{
+	public int compareTo(ICommand o) {
 		return 0;
 	}
 }

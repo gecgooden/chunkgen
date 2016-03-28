@@ -52,9 +52,6 @@ public class ChunkGenCommand implements ICommand
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
-		System.out.println("processCommand");
-		System.out.println(icommandsender.getName());
-
 		if(!icommandsender.canCommandSenderUseCommand(getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.getServer().isSinglePlayer()) {
 			ChatComponentTranslation chatTranslation = new ChatComponentTranslation("commands.generic.permission", new Object[0]);
 			MinecraftServer.getServer().addChatMessage(chatTranslation);
@@ -65,17 +62,10 @@ public class ChunkGenCommand implements ICommand
 			int playerZ = 0;
 			if(!icommandsender.getName().equalsIgnoreCase("Rcon")) {
 				EntityPlayer ep = MinecraftServer.getServer().worldServerForDimension(0).getPlayerEntityByName(icommandsender.getName());
-				System.out.println(ep.getName());
 				BlockPos blockPos = icommandsender.getPosition();
-
-				System.out.println(blockPos.toString());
-
 				playerX = blockPos.getX();
 				playerY = blockPos.getY();
 				playerZ = blockPos.getZ();
-			}
-			for(String s : astring) {
-				System.out.println(s);
 			}
 			if(astring.length == 0 || astring[0].equalsIgnoreCase("help")) {
 				ChatComponentTranslation chatTranslation = new ChatComponentTranslation(getCommandUsage(icommandsender), new Object[0]);
@@ -104,8 +94,6 @@ public class ChunkGenCommand implements ICommand
 					int height = Integer.parseInt(astring[2]);
 					int width = Integer.parseInt(astring[3]);
 					int dimensionID = icommandsender.getEntityWorld().provider.getDimensionId();
-
-					System.out.println(x + " " + z + " " + height + " " + width + " " + dimensionID);
 
 					if(astring.length == 5) {
 						dimensionID = Integer.parseInt(astring[4]);

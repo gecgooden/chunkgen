@@ -37,8 +37,6 @@ public class Utilities {
 		world = DimensionManager.getWorld(dimensionID);
 		
 		return RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
-
-		
 	}
 	
 	public static void generateChunk(int x, int z, int dimensionID) {
@@ -68,9 +66,7 @@ public class Utilities {
 				if (skipChunks > 0) {
 					skipChunks--;
 				} else {
-					System.out.println( (x+x0) + " " + (z+z0) + " " + dimensionID + " " + icommandsender.getName());
 					Reference.toGenerate.add(new ChunkPosition(x + x0, z + z0, dimensionID, icommandsender));
-					System.out.println(Reference.toGenerate.size());
 				}
 			}
 

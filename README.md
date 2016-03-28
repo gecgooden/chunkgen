@@ -33,9 +33,9 @@ Configuration values can be set via the in-game Mod Config menu.
 
 ##Versions
 
-[1.8.9-1.2.3](https://github.com/gecgooden/chunkgen/releases/tag/1.2.3) is for Minecraft 1.8.9 and Forge-11.15.1.1722+.
+[1.8.9-1.3.0](https://github.com/gecgooden/chunkgen/releases/tag/1.3.0) is for Minecraft 1.8.9 and Forge-11.15.1.1722+.
 
-[1.7.10-1.2.3](https://github.com/gecgooden/chunkgen/releases/tag/1.2.3) is for Minecraft 1.7.10 and Forge-10.13.0.1180+.
+[1.7.10-1.3.0](https://github.com/gecgooden/chunkgen/releases/tag/1.3.0) is for Minecraft 1.7.10 and Forge-10.13.4.1448+.
 
 ##Feature Request
 

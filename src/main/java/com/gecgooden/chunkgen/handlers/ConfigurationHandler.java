@@ -21,7 +21,7 @@ public class ConfigurationHandler {
 	
 	@SubscribeEvent
 	public void onConfigurationChangedEvent(OnConfigChangedEvent event) {
-		if(event.modID.equalsIgnoreCase("chunkgen")) {
+		if(event.getModID().equalsIgnoreCase("chunkgen")) {
 			loadConfiguration();
 		}
 	}

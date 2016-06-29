@@ -16,14 +16,14 @@ import java.util.List;
 
 public class Utilities {
 
-	public static void generateChunks(int x, int z, int width, int height, int dimensionID) {
+	public static void generateChunks(MinecraftServer server, int x, int z, int width, int height, int dimensionID) {
 
-		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
+		ChunkProviderServer cps = server.worldServerForDimension(dimensionID).getChunkProvider();
 
 		List<Chunk> chunks = new ArrayList<Chunk>(width*height);
 		for(int i = (x - width/2); i < (x + width/2); i++) {
 			for(int j = (z - height/2); j < (z + height/2); j++) {
-				generateChunk(i, j, dimensionID);
+				generateChunk(server, i, j, dimensionID);
 			}
 		}
 		for(Chunk c : chunks) {
@@ -39,8 +39,8 @@ public class Utilities {
 		return RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
 	}
 	
-	public static void generateChunk(int x, int z, int dimensionID) {
-		ChunkProviderServer cps = MinecraftServer.getServer().worldServerForDimension(dimensionID).theChunkProviderServer;
+	public static void generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
+		ChunkProviderServer cps = server.worldServerForDimension(dimensionID).getChunkProvider();
 		if(!chunksExist(x, z, dimensionID)) {
 			cps.loadChunk(x, z);
 

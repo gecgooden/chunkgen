@@ -32,6 +32,7 @@ The value `numChunksPerTick` dictates how many chunks are generated per Server T
 Configuration values can be set via the in-game Mod Config menu.
 
 ##Versions
+[1.9.4-1.3.0](https://github.com/gecgooden/chunkgen/releases/tag/1.3.0) is for Minecraft 1.9.4 and Forge-12.17.0.1976+
 
 [1.8.9-1.3.0](https://github.com/gecgooden/chunkgen/releases/tag/1.3.0) is for Minecraft 1.8.9 and Forge-11.15.1.1722+.
 

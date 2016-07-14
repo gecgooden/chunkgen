@@ -17,19 +17,9 @@ import org.apache.logging.log4j.LogManager;
 import java.text.DecimalFormat;
 import java.util.Map;
 
-@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory=Reference.GUI_FACTORY)
+@Mod(modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory=Reference.GUI_FACTORY, acceptableRemoteVersions = "*")
 public class ChunkGen
 {
-	/**
-	 * Makes the mod server side only
-	 * @param map
-	 * @param side
-	 * @return Always true.
-	 */
-	@NetworkCheckHandler
-	public boolean networkCheckHandler(Map<String, String> map, Side side) { 
-		return true;
-	}
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -48,7 +38,7 @@ public class ChunkGen
 	{
 		event.registerServerCommand(new ChunkGenCommand());
 		if(Reference.x != null && Reference.z != null && Reference.height != null && Reference.width != null && Reference.height > 0 && Reference.width > 0) {
-			Utilities.queueChunkGeneration(event.getServer(), Reference.skipChunks, Reference.x, Reference.z, Reference.height, Reference.width, 0);
+			Utilities.queueChunkGeneration(event.getServer(), Reference.skipChunks, Reference.x, Reference.z, Reference.height, Reference.width, 0, false);
 		}
 	}
 }

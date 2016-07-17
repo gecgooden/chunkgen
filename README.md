@@ -47,6 +47,8 @@ Configuration values can be set via the in-game Mod Config menu.
 
 [1.7.10-1.3.0](https://github.com/gecgooden/chunkgen/releases/tag/1.3.0) is for Minecraft 1.7.10 and Forge-10.13.4.1448+.
 
+Note: Only the latest version of Minecraft will be actively supported. 
+
 ##Feature Request
 
 Either submit a pull request, or open an issue and label it as a feature-request.

@@ -7,14 +7,21 @@ Mod to pre-generate chunks. This is only required on the server.
 This mod adds the following command to Minecraft:
 
 ```
-/chunkgen <x> <y> <height> <width> [dimension]
+/chunkgen <zone|radius|stop>
+/chunkgen zone <x> <z> <xSize> <zSize> [dimension] [logToChat]
+/chunkgen radius <x> <z> <radius> [dimension] [logToChat]
+/chunkgen top>
 ```
 
-where `x` and `y` are the origin chunk coordinates, height and width describe a rectangle centered at x,y of chunks to generate and dimension is the dimension ID to generate the chunks in.
+Using either `zone` or `radius`, you can set shape of chunk generation.
 
-All arguments should be whole numbers, however `x` and `y` may also be `~` which represents the players current position. 
+When using `zone`, `x` and `z` define origin of rectangular zone and `xSize` and `zSize`, it's size.
+When using `radius`, `x` and `z` define center of circular zone and `radius` it's radius.
+`x` and `z` are chunk coordinates (integers), absolute (ex: `45`) or relative (ex: `~5`). `xSize`, `ySize` and `radius` are in chunks (integers).
 
-`dimension` is an optional argument.
+`dimension` is an optional argument, which can be used to specify dimension to generate chunks in (integer). Can be also replaced with `~` to define dimension you're currently in.
+
+`logToChat`, if `true` will print coordinates of each generated chunk to chat (boolean).
 
 ```
 /chunkgen stop

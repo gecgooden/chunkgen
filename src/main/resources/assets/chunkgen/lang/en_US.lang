@@ -1,5 +1,9 @@
 #Command Response
-commands.successful=Chunk Generation Completed!
-commands.failed=Chunk Generation Failed!
-commands.numberFormatException=One of the passed arguments wasn't a number!
-commands.stopped=Chunk Generation Stopped
+commands.chunkgen.usage=chunkgen <zone|radius|stop>
+commands.chunkgen.usage.zone=chunkgen zone <x> <z> <xSize> <zSize> [dimension] [logToChat]
+commands.chunkgen.usage.radius=chunkgen radius <x> <z> <radius> [dimension] [logToChat]
+commands.chunkgen.enqueued=Enqueued %s chunks to generate
+commands.chunkgen.stopped=Chunk Generation Stopped
+chunkgen.genat=Generated chunk at %s, %s (%s)
+chunkgen.progress=Chunk generation %s%% completed
+chunkgen.success=Chunk Generation Completed!

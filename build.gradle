@@ -14,6 +14,9 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 /*
 // for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
 plugins {
@@ -25,7 +28,7 @@ group= "com.gecgooden.chunkgen" // http://maven.apache.org/guides/mini/guide-nam
 archivesBaseName = "chunkgen"
 
 minecraft {
-    version = "1.9.4-12.17.0.1976"
+    version = "1.10.2-12.18.1.2014"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

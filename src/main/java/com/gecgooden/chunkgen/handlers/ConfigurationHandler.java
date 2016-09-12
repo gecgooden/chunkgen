@@ -34,6 +34,7 @@ public class ConfigurationHandler {
 		Reference.height = configuration.get(Configuration.CATEGORY_GENERAL, "height", 0, "Height starting value").getInt();
 		Reference.width = configuration.get(Configuration.CATEGORY_GENERAL, "width", 0, "Width starting value").getInt();
 		Reference.pauseForPlayers = configuration.get(Configuration.CATEGORY_GENERAL, "pauseForPlayers", true, "Pause chunk generation when players are logged on").getBoolean();
+		Reference.maxChunksLoaded = configuration.get(Configuration.CATEGORY_GENERAL, "maxChunksLoaded", 3000, "Pause chunk generation if more chunks than this are in memory").getInt();
 		Reference.numChunksPerTick = configuration.get(Configuration.CATEGORY_GENERAL, "numChunksPerTick", 1.0, "Number of chunks loaded per tick").getDouble();
 		Reference.updateDelay = configuration.get(Configuration.CATEGORY_GENERAL, "updateDelay", 40, "Number of chunks inbetween percentage updates").getInt();
 		Reference.skipChunks = getSkipChunks().getInt();

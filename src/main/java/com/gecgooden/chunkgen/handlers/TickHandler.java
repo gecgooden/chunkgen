@@ -11,19 +11,30 @@ import com.gecgooden.chunkgen.util.Utilities;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class TickHandler {
 
 	private double chunkQueue = 0;
 	private int chunksGenerated = 0;
 
+	int getChunksLoaded() {
+		int total = 0;
+		for (WorldServer worldServer : MinecraftServer.getServer().worldServers) {
+			total += worldServer.getChunkProvider().getLoadedChunkCount();
+		}
+		return total;
+	}
+
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
 		// Note that this only works on dedicated servers.
-		final World world = MinecraftServer.getServer().getEntityWorld();
-		if (Reference.pauseForPlayers && world.playerEntities.size() > 0) return;
 
 		if(Reference.toGenerate != null && !Reference.toGenerate.isEmpty()) {
+			final World world = MinecraftServer.getServer().getEntityWorld();
+			if (Reference.pauseForPlayers && world.playerEntities.size() > 0) return;
+			if (Reference.maxChunksLoaded <= getChunksLoaded()) return;
+
 			chunkQueue += Reference.numChunksPerTick;
 			while (chunkQueue > 1) {
 				chunkQueue--;

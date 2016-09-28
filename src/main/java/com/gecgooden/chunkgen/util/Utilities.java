@@ -38,16 +38,35 @@ public class Utilities {
 		return world.getChunkProvider().chunkExists(x, z) || RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
 	}
 
-	public static void generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
+    private static boolean chunkPopulated(ChunkProviderServer cps, int x, int z, int dimensionID) {
+        Chunk chunk = cps.provideChunk(x, z);
+
+        if (chunk.isTerrainPopulated()) {
+            return true;
+        } else {
+            Reference.logger.info("Chunk at " + x + " " + z + " Dim: " + dimensionID + " not populated");
+            return false;
+        }
+    }
+
+    private static boolean chunkPrepared(ChunkProviderServer cps, int x, int z, int dimensionID) {
+        if (chunksExist(x, z, dimensionID) && chunkPopulated(cps, x, z, dimensionID)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
 		ChunkProviderServer cps = server.worldServerForDimension(dimensionID).getChunkProvider();
-		if(!chunksExist(x, z, dimensionID)) {
+		if(!chunkPrepared(cps, x, z, dimensionID)) {
 			cps.loadChunk(x, z);
 
 			cps.loadChunk(x, z+1);
 			cps.loadChunk(x+1, z);
 			cps.loadChunk(x+1, z+1);
 
-			Reference.logger.info(String.format("Loaded Chunk at %s, %s (%s) ", x, z, DimensionManager.getProviderType(dimensionID) != null ? DimensionManager.getProviderType(dimensionID).getName() : dimensionID));
+			Reference.logger.info(String.format("Loaded Chunk at %s, %s DIM%s ", x, z, DimensionManager.getProviderType(dimensionID) != null ? DimensionManager.getProviderType(dimensionID).getName() : dimensionID));
 		}
 	}
 

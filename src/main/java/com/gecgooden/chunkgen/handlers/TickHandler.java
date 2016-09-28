@@ -14,6 +14,9 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import static com.gecgooden.chunkgen.reference.Reference.x;
+import static com.gecgooden.chunkgen.reference.Reference.z;
+
 public class TickHandler {
 
 	private double chunkQueue = 0;
@@ -50,7 +53,10 @@ public class TickHandler {
 						ConfigurationHandler.UpdateSkipChunks();
 					}
 					if(cp.logToChat()){
-						cp.getICommandSender().addChatMessage(new TextComponentTranslation("chunkgen.genat", cp.getX(), cp.getZ(), DimensionManager.getProviderType(cp.getDimensionID()) != null ? DimensionManager.getProviderType(cp.getDimensionID()).getName() : cp.getDimensionID()));
+						cp.getICommandSender().addChatMessage(new TextComponentTranslation("chunkgen.genat",
+								cp.getX(), cp.getZ(), DimensionManager.getProviderType(cp.getDimensionID()) != null ? DimensionManager.getProviderType(cp.getDimensionID()).getName() : cp.getDimensionID()));
+						Reference.logger.info(String.format("Loaded Chunk at %s, %s DIM[%s] ",
+								cp.getX(), cp.getZ(), DimensionManager.getProviderType(cp.getDimensionID()) != null ? DimensionManager.getProviderType(cp.getDimensionID()).getName() : cp.getDimensionID()));
 					}
 					if(Reference.toGenerate.peek() == null) {
 						TextComponentTranslation chatTranslation = new TextComponentTranslation("chunkgen.success");

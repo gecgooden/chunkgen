@@ -66,7 +66,7 @@ public class Utilities {
 			cps.loadChunk(x+1, z);
 			cps.loadChunk(x+1, z+1);
 
-			Reference.logger.info(String.format("Loaded Chunk at %s, %s DIM%s ", x, z, DimensionManager.getProviderType(dimensionID) != null ? DimensionManager.getProviderType(dimensionID).getName() : dimensionID));
+
 		}
 	}
 

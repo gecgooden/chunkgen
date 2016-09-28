@@ -14,6 +14,7 @@ public class Reference {
     public static Integer width;
     public static double numChunksPerTick;
     public static boolean pauseForPlayers;
+    public static Integer maxChunksLoaded;
 
     public static final String MOD_ID = "chunkgen";
     public static final String VERSION = "1.3";

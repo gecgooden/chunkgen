@@ -41,7 +41,7 @@ public class Utilities {
     private static boolean chunkPopulated(ChunkProviderServer cps, int x, int z, int dimensionID) {
         Chunk chunk = cps.provideChunk(x, z);
 
-        if (chunk.isTerrainPopulated()) {
+        if (chunk.isPopulated()) {
             return true;
         } else {
             //Reference.logger.info("Chunk at " + x + " " + z + " Dim: " + dimensionID + " not populated");

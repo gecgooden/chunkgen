@@ -44,7 +44,7 @@ public class Utilities {
         if (chunk.isTerrainPopulated()) {
             return true;
         } else {
-            Reference.logger.info("Chunk at " + x + " " + z + " Dim: " + dimensionID + " not populated");
+            //Reference.logger.info("Chunk at " + x + " " + z + " Dim: " + dimensionID + " not populated");
             return false;
         }
     }

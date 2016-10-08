@@ -14,8 +14,8 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 /*
 // for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
@@ -23,7 +23,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.10.2-1.4.0"
+version = "1.10.2-1.5.0"
 group= "com.gecgooden.chunkgen" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "chunkgen"
 

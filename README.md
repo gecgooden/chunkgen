@@ -7,10 +7,15 @@ Mod to pre-generate chunks. This is only required on the server.
 This mod adds the following command to Minecraft:
 
 ```
+1.10.2+:
 /chunkgen <zone|radius|stop>
 /chunkgen zone <x> <z> <xSize> <zSize> [dimension] [logToChat]
 /chunkgen radius <x> <z> <radius> [dimension] [logToChat]
-/chunkgen top>
+/chunkgen stop
+
+1.7.10-1.9.4
+/chunkgen <x> <z> <xSize> <zSize> [dimension]
+/chunkgen stop
 ```
 
 Using either `zone` or `radius`, you can set shape of chunk generation.

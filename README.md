@@ -13,7 +13,7 @@ This mod adds the following command to Minecraft:
 /chunkgen radius <x> <z> <radius> [dimension] [logToChat]
 /chunkgen stop
 
-1.7.10-1.9.4
+1.7.10-1.9.4:
 /chunkgen <x> <z> <xSize> <zSize> [dimension]
 /chunkgen stop
 ```

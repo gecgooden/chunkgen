@@ -60,13 +60,11 @@ public class Utilities {
     public static void generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
 		ChunkProviderServer cps = server.worldServerForDimension(dimensionID).getChunkProvider();
 		if(!chunkPrepared(cps, x, z, dimensionID)) {
-			cps.loadChunk(x, z);
+			cps.provideChunk(x, z).needsSaving(true);
 
-			cps.loadChunk(x, z+1);
-			cps.loadChunk(x+1, z);
-			cps.loadChunk(x+1, z+1);
-
-
+			cps.provideChunk(x, z+1).needsSaving(true);
+			cps.provideChunk(x+1, z).needsSaving(true);
+			cps.provideChunk(x+1, z+1).needsSaving(true);
 		}
 	}
 
@@ -123,7 +121,7 @@ public class Utilities {
         final Vec3d zerovec = new Vec3d(x, 0, z);
         BiConsumer<Integer, Integer> addChunk = (xpos,zpos) -> {
             //guard for range
-            if (zerovec.distanceTo(new Vec3d(xpos, 0, zpos)) <= radius) {
+            if (zerovec.distanceTo(new Vec3d(xpos, 0, zpos)) > radius) {
                 return;
             }
             Reference.toGenerate.add(new ChunkPosition(xpos, zpos, dimensionID, icommandsender, logToChat));
@@ -139,7 +137,7 @@ public class Utilities {
         BiConsumer<Integer, Integer> addChunk = (xpos,zpos) -> {
             //guard for range
             if (xpos > xmax || xpos < xmin
-                    || zpos > zmax || xpos < zmin) {
+                    || zpos > zmax || zpos < zmin) {
                 return;
             }
             Reference.toGenerate.add(new ChunkPosition(xpos, zpos, dimensionID, icommandsender, logToChat));

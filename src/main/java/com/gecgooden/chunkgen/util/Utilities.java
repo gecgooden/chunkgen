@@ -121,7 +121,7 @@ public class Utilities {
         final Vec3d zerovec = new Vec3d(x, 0, z);
         BiConsumer<Integer, Integer> addChunk = (xpos,zpos) -> {
             //guard for range
-            if (zerovec.distanceTo(new Vec3d(xpos, 0, zpos)) <= radius) {
+            if (zerovec.distanceTo(new Vec3d(xpos, 0, zpos)) > radius) {
                 return;
             }
             Reference.toGenerate.add(new ChunkPosition(xpos, zpos, dimensionID, icommandsender, logToChat));
@@ -137,7 +137,7 @@ public class Utilities {
         BiConsumer<Integer, Integer> addChunk = (xpos,zpos) -> {
             //guard for range
             if (xpos > xmax || xpos < xmin
-                    || zpos > zmax || xpos < zmin) {
+                    || zpos > zmax || zpos < zmin) {
                 return;
             }
             Reference.toGenerate.add(new ChunkPosition(xpos, zpos, dimensionID, icommandsender, logToChat));

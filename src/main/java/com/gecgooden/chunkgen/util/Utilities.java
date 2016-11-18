@@ -60,13 +60,11 @@ public class Utilities {
     public static void generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
 		ChunkProviderServer cps = server.worldServerForDimension(dimensionID).getChunkProvider();
 		if(!chunkPrepared(cps, x, z, dimensionID)) {
-			cps.loadChunk(x, z);
+			cps.provideChunk(x, z).needsSaving(true);
 
-			cps.loadChunk(x, z+1);
-			cps.loadChunk(x+1, z);
-			cps.loadChunk(x+1, z+1);
-
-
+			cps.provideChunk(x, z+1).needsSaving(true);
+			cps.provideChunk(x+1, z).needsSaving(true);
+			cps.provideChunk(x+1, z+1).needsSaving(true);
 		}
 	}
 

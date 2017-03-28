@@ -76,6 +76,9 @@ public class ChunkGenCommand extends CommandBase
 			case "stop":
 				Reference.toGenerate.clear();
 				break;
+			default:
+				getCommandUsage();
+				break;
 			}
 		}
 	}

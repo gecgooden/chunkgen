@@ -77,7 +77,7 @@ public class ChunkGenCommand extends CommandBase
 				Reference.toGenerate.clear();
 				break;
 			default:
-				getCommandUsage();
+				getCommandUsage(icommandsender);
 				break;
 			}
 		}

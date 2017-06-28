@@ -20,7 +20,7 @@ public class TickHandler {
 
     private int getChunksLoaded(MinecraftServer server) {
         int total = 0;
-        for (WorldServer worldServer : server.worldServers) {
+        for (WorldServer worldServer : server.worlds) {
             total += worldServer.getChunkProvider().getLoadedChunkCount();
         }
         return total;
@@ -46,12 +46,12 @@ public class TickHandler {
                             ConfigurationHandler.UpdateSkipChunks();
                         }
                         if (cp.logToChat()) {
-                            cp.getICommandSender().addChatMessage(new TextComponentTranslation("chunkgen.genat", cp.getX(), cp.getZ(), getChunkDescription(cp), String.format("%.3f", completedPercentage)));
+                            cp.getICommandSender().sendMessage(new TextComponentTranslation("chunkgen.genat", cp.getX(), cp.getZ(), getChunkDescription(cp), String.format("%.3f", completedPercentage)));
                         }
                         if (Reference.toGenerate.peek() == null) {
                             TextComponentTranslation chatTranslation = new TextComponentTranslation("chunkgen.success");
-                            server.addChatMessage(chatTranslation);
-                            cp.getICommandSender().addChatMessage(new TextComponentString(chatTranslation.getUnformattedComponentText()));
+                            server.sendMessage(chatTranslation);
+                            cp.getICommandSender().sendMessage(new TextComponentString(chatTranslation.getUnformattedComponentText()));
                             server.saveAllWorlds(true);
                         }
                     }

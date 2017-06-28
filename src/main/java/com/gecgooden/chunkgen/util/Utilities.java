@@ -17,18 +17,18 @@ public class Utilities {
 
     private static boolean chunksExist(MinecraftServer server, int x, int z, int dimensionID) {
         WorldServer world = DimensionManager.getWorld(dimensionID);
-        ChunkProviderServer chunkProvider = server.worldServerForDimension(dimensionID).getChunkProvider();
+        ChunkProviderServer chunkProvider = server.getWorld(dimensionID).getChunkProvider();
         return chunkProvider.chunkExists(x, z) || RegionFileCache.createOrLoadRegionFile(world.getChunkSaveLocation(), x, z).chunkExists(x & 0x1F, z & 0x1F);
     }
 
     public static boolean generateChunk(MinecraftServer server, int x, int z, int dimensionID) {
-        ChunkProviderServer chunkProvider = server.worldServerForDimension(dimensionID).getChunkProvider();
+        ChunkProviderServer chunkProvider = server.getWorld(dimensionID).getChunkProvider();
         if (chunkProvider.chunkExists(x, z)) {
             return false;
         }
         if (chunkProvider.getLoadedChunkCount() > Reference.maxChunksLoaded) {
             chunkProvider.saveChunks(true);
-            chunkProvider.unloadAllChunks();
+            chunkProvider.queueUnloadAll();
         }
         chunkProvider.provideChunk(x, z);
         return true;

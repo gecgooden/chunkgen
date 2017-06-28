@@ -25,12 +25,12 @@ public class ChunkGenCommand extends CommandBase {
     }
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         return "chunkgen";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender icommandsender) {
+    public String getUsage(ICommandSender icommandsender) {
         return "commands.chunkgen.usage";
     }
 
@@ -79,14 +79,14 @@ public class ChunkGenCommand extends CommandBase {
                     break;
                 case SUB_CMD_STOP:
                     Reference.toGenerate.clear();
-                    icommandsender.addChatMessage(new TextComponentTranslation("commands.chunkgen.stopped"));
+                    icommandsender.sendMessage(new TextComponentTranslation("commands.chunkgen.stopped"));
                     break;
             }
         }
     }
 
     @Override
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
         switch (args.length) {
             case 1:
                 return getListOfStringsMatchingLastWord(args, SUB_CMD_HELP, SUB_CMD_ZONE, SUB_CMD_RADIUS, SUB_CMD_STOP);

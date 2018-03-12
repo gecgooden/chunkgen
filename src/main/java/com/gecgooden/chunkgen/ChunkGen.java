@@ -33,9 +33,9 @@ public class ChunkGen
 	@EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
         event.registerServerCommand(new ChunkGenCommand());
-        if (Reference.x != null && Reference.z != null && Reference.depth != null && Reference.width != null && Reference.depth > 0 && Reference.width > 0) {
-            Reference.logger.info(String.format("Starting initial Generation with x:%d z:%d width:%d depth:%d", Reference.x, Reference.z, Reference.width, Reference.depth));
-            Utilities.queueChunkGeneration(event.getServer(), Reference.skipChunks, Reference.x, Reference.z, Reference.width, Reference.depth, 0, false);
+        if (Reference.x != null && Reference.z != null && Reference.depth != null && Reference.width != null && Reference.depth > 0 && Reference.width > 0 && Reference.dimension != null) {
+            Reference.logger.info(String.format("Starting initial Generation in Dimension:%d with x:%d z:%d width:%d depth:%d", Reference.dimension, Reference.x, Reference.z, Reference.width, Reference.depth));
+            Utilities.queueChunkGeneration(event.getServer(), Reference.x, Reference.z, Reference.width, Reference.depth, Reference.dimension, false);
         }
     }
 }

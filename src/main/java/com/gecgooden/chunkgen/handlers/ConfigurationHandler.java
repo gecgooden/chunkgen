@@ -31,6 +31,7 @@ public class ConfigurationHandler {
 		Reference.z = configuration.get(Configuration.CATEGORY_GENERAL, "z", 0, "Z starting value").getInt();
 		Reference.depth = configuration.get(Configuration.CATEGORY_GENERAL, "depth", 0, "Height starting value").getInt();
 		Reference.width = configuration.get(Configuration.CATEGORY_GENERAL, "width", 0, "Width starting value").getInt();
+		Reference.dimension = configuration.get(Configuration.CATEGORY_GENERAL, "dimension", 0, "Dimension to auto generate in").getInt();
 		Reference.pauseForPlayers = configuration.get(Configuration.CATEGORY_GENERAL, "pauseForPlayers", false, "Pause chunk generation when players are logged on").getBoolean();
 		Reference.maxChunksLoaded = configuration.get(Configuration.CATEGORY_GENERAL, "maxChunksLoaded", 3000, "Pause chunk generation if more chunks than this are in memory").getInt();
 		Reference.numChunksPerTick = configuration.get(Configuration.CATEGORY_GENERAL, "numChunksPerTick", 1.0, "Number of chunks loaded per tick").getDouble();
@@ -42,7 +43,7 @@ public class ConfigurationHandler {
 		}
 	}
 
-	public static void UpdateSkipChunks() {
+	static void updateSkipChunks() {
 		getSkipChunks().set(Reference.skipChunks);
 
 		configuration.save();

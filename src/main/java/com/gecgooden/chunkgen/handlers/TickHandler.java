@@ -43,7 +43,7 @@ public class TickHandler {
                         double completedPercentage = 100 - ((double) Reference.toGenerate.size() / (double) Reference.startingSize) * 100;
                         if (chunksGenerated % Reference.updateDelay == 0) {
                             Reference.logger.info(String.format("Generation [x:%3d z:%3d][DIM:%s] %.3f%% completed", cp.getX(), cp.getZ(), getChunkDescription(cp), completedPercentage));
-                            ConfigurationHandler.UpdateSkipChunks();
+                            ConfigurationHandler.updateSkipChunks();
                         }
                         if (cp.logToChat()) {
                             cp.getICommandSender().sendMessage(new TextComponentTranslation("chunkgen.genat", cp.getX(), cp.getZ(), getChunkDescription(cp), String.format("%.3f", completedPercentage)));

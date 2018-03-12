@@ -1,24 +1,22 @@
 package com.gecgooden.chunkgen.commands;
 
-import java.util.List;
-
 import com.gecgooden.chunkgen.reference.Reference;
 import com.gecgooden.chunkgen.util.Utilities;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+
+import java.util.List;
 
 public class ChunkGenCommand extends CommandBase {
 
-    public static final String SUB_CMD_HELP = "help";
-    public static final String SUB_CMD_ZONE = "zone";
-    public static final String SUB_CMD_RADIUS = "radius";
-    public static final String SUB_CMD_STOP = "stop";
+    private static final String SUB_CMD_HELP = "help";
+    private static final String SUB_CMD_ZONE = "zone";
+    private static final String SUB_CMD_RADIUS = "radius";
+    private static final String SUB_CMD_STOP = "stop";
 
     public ChunkGenCommand() {
 
@@ -56,7 +54,7 @@ public class ChunkGenCommand extends CommandBase {
                         if (astring.length > 6) {
                             logToChat = parseBoolean(astring[6]);
                         }
-                        notifyCommandListener(icommandsender, this, "commands.chunkgen.enqueued", Utilities.queueChunkGeneration(icommandsender, 0, x, z, width,depth, dimensionID, logToChat));
+                        notifyCommandListener(icommandsender, this, "commands.chunkgen.enqueued", Utilities.queueChunkGeneration(icommandsender, z, width, depth, dimensionID, logToChat));
                     }
                     break;
                 case SUB_CMD_RADIUS:
@@ -74,7 +72,7 @@ public class ChunkGenCommand extends CommandBase {
                         if (astring.length > 5) {
                             logToChat = parseBoolean(astring[5]);
                         }
-                        notifyCommandListener(icommandsender, this, "commands.chunkgen.enqueued", Utilities.queueChunkGeneration(icommandsender, 0, x, z, radius, dimensionID, logToChat));
+                        notifyCommandListener(icommandsender, this, "commands.chunkgen.enqueued", Utilities.queueChunkGeneration(icommandsender, x, z, radius, dimensionID, logToChat));
                     }
                     break;
                 case SUB_CMD_STOP:

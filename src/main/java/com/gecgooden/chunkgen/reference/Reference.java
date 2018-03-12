@@ -5,13 +5,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Reference {
     public static Integer x;
     public static Integer z;
     public static Integer depth;
     public static Integer width;
+    public static Integer dimension;
     public static double numChunksPerTick;
     public static boolean pauseForPlayers;
     public static Integer maxChunksLoaded;

@@ -5,12 +5,9 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.RegionFileCache;
 import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraftforge.common.DimensionManager;
-
-import java.security.Provider;
 
 
 public class Utilities {
@@ -34,7 +31,7 @@ public class Utilities {
         return true;
     }
 
-    public static int queueChunkGeneration(ICommandSender icommandsender, int skipChunks, int x, int z, int radius, int dimensionID, boolean logToChat) {
+    public static int queueChunkGeneration(ICommandSender icommandsender, int x, int z, int radius, int dimensionID, boolean logToChat) {
         final int xmax = x + radius;
         final int xmin = x - radius;
         final int zmax = z + radius;
@@ -55,7 +52,7 @@ public class Utilities {
         return Reference.startingSize = Reference.toGenerate.size();
     }
 
-    public static int queueChunkGeneration(ICommandSender icommandsender, int skipChunks, int x, int z, int xSize, int zSize, int dimensionID, boolean logToChat) {
+    public static int queueChunkGeneration(ICommandSender icommandsender, int x, int z, int xSize, int zSize, int dimensionID, boolean logToChat) {
         final int xmax = x + xSize;
         final int xmin = x - xSize;
         final int zmax = z + zSize;
